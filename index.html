@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil de Aizen 🐾</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background: linear-gradient(135deg, #202946 0%, #232a44 60%, #312e63 100%);
+            min-height: 100vh;
+        }
+
+        .timeline-scroll::-webkit-scrollbar {
+            height: 8px;
+            background: #fff0;
+        }
+
+        .timeline-scroll::-webkit-scrollbar-thumb {
+            background: #6366f1bb;
+            border-radius: 6px;
+        }
+
+        .card-hov {
+            transition: box-shadow 0.3s, transform 0.15s;
+        }
+
+        .card-hov:hover {
+            box-shadow: 0 6px 32px #94a3b822, 0 2px 8px #818cf822;
+            transform: translateY(-4px) scale(1.03);
+        }
+
+        .pop-in {
+            animation: pop-in .5s cubic-bezier(.4, 2, .7, .9) both;
+        }
+
+        @keyframes pop-in {
+            0% {
+                transform: scale(.9) translateY(32px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="max-w-2xl mx-auto p-4">
+        <!-- Header: Foto de perfil dinámica -->
+        <section
+            class="flex flex-col items-center gap-2 bg-[#232950]/95 rounded-3xl shadow-xl p-7 mt-10 relative border border-slate-100 card-hov pop-in"
+            style="background: linear-gradient(135deg, #232950 70%, #eab30822 100%);">
+            <div id="profilePicture"
+                class="relative w-40 h-40 mb-2 mt-4 overflow-hidden rounded-full border-4 border-indigo-300 shadow-lg bg-gray-100 transition-all duration-700 flex items-center justify-center">
+                <!-- Imagen de perfil se inyecta vía JS -->
+            </div>
+<h1 class="text-3xl font-bold text-white mt-2 flex items-center gap-2 drop-shadow-contrast glow-text">
+  Aizen <span class="text-2xl text-white drop-shadow-lg" style="color: #fff;">🦴</span>
+</h1>
+
+
+            <p class="text-slate-200 font-medium drop-shadow-contrast">Pomsky • Macho ♂</p>
+            <p class="text-slate-300 text-sm drop-shadow-contrast">Fecha de nacimiento: 15/dic/2024</p>
+            <div class="flex gap-2 mt-1">
+                <span id="pesoActual"
+                    class="inline-flex items-center px-2 py-0.5 rounded-full bg-yellow-300 text-yellow-900 text-xs font-semibold drop-shadow-contrast">
+                    <span class="text-base mr-1">🐾</span> <span>...</span>
+                </span>
+                <span id="edadActual"
+                    class="inline-flex items-center px-2 py-0.5 rounded-full bg-indigo-200 text-indigo-900 text-xs font-semibold drop-shadow-contrast">
+                    <span class="text-base mr-1">🐾</span> <span>...</span>
+                </span>
+            </div>
+        </section>
+        <style>
+            .drop-shadow-contrast {
+                text-shadow: 0 1px 4px #000a, 0 2px 16px #0004;
+            }
+
+            .glow-text {
+                text-shadow: 0 2px 12px #ffe06655, 0 1px 8px #0007;
+            }
+        </style>
+
+
+        <!-- Contacto -->
+        <section
+            class="bg-white/80 rounded-2xl shadow-lg p-4 mt-7 mb-3 flex flex-col gap-2 border border-slate-100 card-hov pop-in">
+            <h2 class="font-semibold text-lg text-indigo-600 mb-2 flex items-center gap-1">
+                <span class="text-2xl">🐾</span> Contacto de los Dueños
+            </h2>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                <strong class="min-w-[130px]">Luis Montoya:</strong>
+                <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
+                    <a href="mailto:luistyle@gmail.com"
+                        class="text-indigo-600 hover:underline break-all">luistyle@gmail.com</a>
+                    <a href="https://wa.me/573016394349" target="_blank" title="WhatsApp Luis"
+                        class="flex items-center gap-1 bg-green-50 px-2 py-0.5 rounded-lg hover:bg-green-100 transition w-fit">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                            class="w-5 h-5 inline" />
+                        <span class="text-green-700 font-medium text-xs">+57 301 639 4349</span>
+                    </a>
+                </div>
+            </div>
+            <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+                <strong class="min-w-[130px]">Lina Cartagena:</strong>
+                <div class="flex flex-col sm:flex-row gap-1 sm:gap-3">
+                    <a href="mailto:linamc@gmail.com"
+                        class="text-indigo-600 hover:underline break-all">linamc@gmail.com</a>
+                    <a href="https://wa.me/573016390294" target="_blank" title="WhatsApp Lina"
+                        class="flex items-center gap-1 bg-green-50 px-2 py-0.5 rounded-lg hover:bg-green-100 transition w-fit">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp"
+                            class="w-5 h-5 inline" />
+                        <span class="text-green-700 font-medium text-xs">+57 301 639 0294</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Carnet de Vacunas -->
+        <section
+            class="bg-white/80 rounded-2xl shadow-lg p-4 mb-3 border border-slate-100 card-hov w-full max-w-full flex flex-col gap-2 items-start pop-in">
+            <div class="flex items-center gap-2 mb-2">
+                <span class="text-2xl">🐾</span>
+                <h2 class="font-semibold text-lg text-emerald-600">Carnet de Vacunas</h2>
+                <button id="showCarnetVacunas"
+                    class="ml-2 text-xs bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full hover:bg-emerald-200 transition">Ver
+                    carnet</button>
+            </div>
+        </section>
+        <!-- Carnet de Seguro -->
+        <section
+            class="bg-white/80 rounded-2xl shadow-lg p-4 mb-3 border border-slate-100 card-hov w-full max-w-full flex flex-col gap-2 items-start pop-in">
+            <div class="flex items-center gap-2 mb-2">
+                <span class="text-2xl">🐾</span>
+                <h2 class="font-semibold text-lg text-blue-500">Carnet de Seguro</h2>
+                <button id="showCarnetSeguro"
+                    class="ml-2 text-xs bg-blue-100 text-blue-700 px-3 py-1 rounded-full hover:bg-blue-200 transition">Ver
+                    carnet</button>
+            </div>
+        </section>
+        <!-- Modales para carnets -->
+        <div id="modalVacunas"
+            class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+            <div class="bg-white rounded-lg shadow-lg p-4 max-w-lg w-full relative">
+                <button onclick="document.getElementById('modalVacunas').classList.add('hidden')"
+                    class="absolute top-2 right-3 text-xl text-slate-400 hover:text-red-500">&times;</button>
+                <div class="absolute top-2 right-12 flex gap-2">
+                    <a href="assets/vacunas.png" target="_blank" title="Ampliar"
+                        class="bg-indigo-100 hover:bg-indigo-200 text-indigo-800 rounded-full p-2 shadow-sm transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 inline" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 3h8a2 2 0 012 2v8m0 4v3a2 2 0 01-2 2h-8a2 2 0 01-2-2v-3m0-4V5a2 2 0 012-2h3" />
+                        </svg>
+                    </a>
+                    <a href="assets/vacunas.png" download title="Descargar"
+                        class="bg-green-100 hover:bg-green-200 text-green-800 rounded-full p-2 shadow-sm transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 inline" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                    </a>
+                </div>
+                <img src="assets/vacunas.png" alt="Carnet de Vacunas" class="w-full rounded-md border shadow-sm mt-6">
+            </div>
+        </div>
+
+        <div id="modalSeguro" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+            <div class="bg-white rounded-lg shadow-lg p-4 max-w-lg w-full relative">
+                <button onclick="document.getElementById('modalSeguro').classList.add('hidden')"
+                    class="absolute top-2 right-3 text-xl text-slate-400 hover:text-red-500">&times;</button>
+                <div class="absolute top-2 right-12 flex gap-2">
+                    <a href="assets/carnetseguro.png" target="_blank" title="Ampliar"
+                        class="bg-indigo-100 hover:bg-indigo-200 text-indigo-800 rounded-full p-2 shadow-sm transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 inline" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 3h8a2 2 0 012 2v8m0 4v3a2 2 0 01-2 2h-8a2 2 0 01-2-2v-3m0-4V5a2 2 0 012-2h3" />
+                        </svg>
+                    </a>
+                    <a href="assets/carnetseguro.png" download title="Descargar"
+                        class="bg-green-100 hover:bg-green-200 text-green-800 rounded-full p-2 shadow-sm transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 inline" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                    </a>
+                </div>
+                <img src="assets/carnetseguro.png" alt="Carnet de Seguro"
+                    class="w-full rounded-md border shadow-sm mt-6">
+            </div>
+        </div>
+
+
+        <!-- Timeline horizontal de fotos -->
+        <section class="bg-white/85 rounded-2xl shadow-lg p-4 mb-4 border border-slate-100 card-hov pop-in">
+            <h2 class="font-semibold text-lg text-indigo-700 mb-2 flex items-center gap-1">
+                <span class="text-2xl">🐾</span> Línea de Tiempo
+            </h2>
+            <div id="timelineFotos" class="flex gap-6 overflow-x-auto pb-4 timeline-scroll scroll-smooth"></div>
+        </section>
+
+        <!-- Tarjetas dinámicas: Vacunas, Desparasitacion -->
+        <section id="tarjetasSalud" class="grid grid-cols-1 gap-4 mb-4 w-full max-w-full"></section>
+
+        <!-- Gráfica de peso -->
+        <section class="bg-white/85 rounded-2xl shadow-lg p-4 mb-4 border border-slate-100 card-hov pop-in">
+            <h2 class="font-semibold text-lg text-indigo-700 mb-2 flex items-center gap-1">
+                <span class="text-2xl">🐾</span> Curva de Crecimiento (Peso)
+            </h2>
+            <canvas id="weightChart" width="400" height="200"></canvas>
+            <div class="text-xs text-slate-400 mt-2">Actualiza tu Google Sheet para refrescar estos datos.</div>
+        </section>
+
+        <section id="tarjetasSalud" class="grid grid-cols-1 gap-4 mb-4 w-full max-w-full"></section>
+
+        <!-- Citas médicas -->
+        <section id="citasMedicasSection"
+            class="bg-white/85 rounded-2xl shadow-lg p-4 mb-4 border border-slate-100 card-hov pop-in">
+            <h2 class="font-semibold text-lg text-indigo-700 mb-2 flex items-center gap-1">
+                <span class="text-2xl">🐾</span> Citas Médicas
+            </h2>
+            <div id="citasMedicas" class="overflow-x-auto"></div>
+        </section>
+
+
+<!-- Notas y curiosidades -->
+<section class="bg-white/80 rounded-2xl shadow-lg p-4 mb-4 border border-slate-100 card-hov pop-in">
+  <h2 class="font-semibold text-lg text-indigo-700 mb-2 flex items-center gap-1">
+    <span class="text-2xl">🐾</span> Notas y Curiosidades
+  </h2>
+  <div id="notasCuriosidades" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+</section>
+
+
+
+        <footer class="text-center text-xs text-slate-400 py-6">
+            &copy; 2025 Luis Montoya & Lina Cartagena | Perfil de Aizen creado con ❤️ y Tailwind CSS
+        </footer>
+    </main>
+    <script>
+        // --- Configuración: Sheet ID
+        const SHEET_ID = "13sGO1cTDbwVRtPsaoxQy_3rKKt90Ievus5_5YJen_WY";
+        const VACUNAS_CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Vacunas`;
+        const PESO_CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Peso`;
+        const FOTOS_CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Fotos`;
+        const DESPARA_CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Desparasitacion`;
+        const CITAS_MEDICAS_CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Citas Medicas`;
+const NOTAS_CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:csv&sheet=Notas`;
+
+
+        // Botones de carnetva
+        document.getElementById('showCarnetVacunas').onclick = () =>
+            document.getElementById('modalVacunas').classList.remove('hidden');
+        document.getElementById('showCarnetSeguro').onclick = () =>
+            document.getElementById('modalSeguro').classList.remove('hidden');
+
+        // --- Timeline de fotos dinámico (EXCLUYE carnets y profile), carga perfil dinámico ---
+        function parseFechaDMY(fechaStr) {
+            if (!fechaStr) return new Date(2000, 0, 1);
+            const parts = fechaStr.trim().split('/');
+            if (parts.length < 3) return new Date(2000, 0, 1);
+            const [d, m, y] = parts.map(x => parseInt(x, 10));
+            return new Date(y, m - 1, d);
+        }
+
+        fetch(FOTOS_CSV_URL)
+            .then(r => {
+                if (!r.ok) throw new Error('No se pudo cargar el tab FOTOS');
+                return r.text();
+            }).then(txt => {
+                let rows = txt.split('\n').map(line => line.split(','));
+                // Buscar imagen de perfil usando el archivo profile.jpg (por nombre exacto)
+                let profileImg = "assets/aizenm05122025.jpg"; // fallback
+                for (let r of rows.slice(1)) {
+                    if ((r[1] || "").trim().toLowerCase().includes("profile.jpg")) {
+                        profileImg = (r[1] || "").replace(/"/g, "").trim();
+                        break;
+                    }
+                }
+                document.getElementById('profilePicture').innerHTML = `<img src="${profileImg}" alt="Perfil Aizen" class="w-40 h-40 rounded-full object-cover object-center border-4 border-indigo-300 shadow-xl transition-all duration-700">`;
+
+                // Filtrar fotos para timeline (NO carnets, NO profile)
+                let fotos = rows.slice(1)
+                    .filter(r =>
+                        r[1] && r[1].trim() &&
+                        !r[1].toLowerCase().includes("vacunas.png") &&
+                        !r[1].toLowerCase().includes("carnetseguro.png") &&
+                        !r[1].toLowerCase().includes("profile.jpg")
+                    )
+                    .map(r => ({
+                        fecha: (r[0] || "").replace(/"/g, "").trim(),
+                        imagen: (r[1] || "").replace(/"/g, "").trim(),
+                        comentario: (r[2] || "").replace(/"/g, "").trim()
+                    }))
+                    .sort((a, b) => parseFechaDMY(a.fecha) - parseFechaDMY(b.fecha));
+                let html = fotos.map(foto => `
+          <div class="flex-shrink-0 w-36 group transition-transform hover:-translate-y-2 pop-in" style="animation-delay: ${Math.random() * .5 + .1}s;">
+            <div class="rounded-xl overflow-hidden shadow-md border bg-indigo-50 relative">
+              <img src="${foto.imagen}" alt="${foto.fecha}" class="w-full h-32 object-cover object-center"/>
+              <span class="text-2xl absolute -top-3 -left-3">🐾</span>
+            </div>
+            
+            ${foto.comentario ? `<div class="text-center text-xs text-slate-400">${foto.comentario}</div>` : ""}
+          </div>
+        `).join('');
+                document.getElementById("timelineFotos").innerHTML = html || `<div class="text-center text-gray-400">No hay fotos cargadas</div>`;
+            }).catch(e => {
+                document.getElementById("timelineFotos").innerHTML = `<div class="text-center text-gray-400">No se pudo cargar el timeline de fotos<br>${e}</div>`;
+                console.error("Error timelineFotos:", e);
+            });
+
+        // --- Tarjetas de Salud: Vacunas y Desparasitacion ---
+        function renderCard(tab, icon, color, data) {
+            let [headers, ...rows] = data;
+            let html = `
+        <section class="bg-white/90 rounded-2xl shadow-lg p-4 border border-slate-100 card-hov w-full mb-3 pop-in">
+          <h2 class="font-semibold text-lg ${color} mb-2 flex items-center gap-1">
+            <span class="text-2xl">🐾</span> ${tab}
+          </h2>
+          <div class="overflow-x-auto">
+            <table class="min-w-full text-xs text-slate-700">
+              <thead><tr>${headers.map(h => `<th class="py-1 px-2 text-left font-semibold">${h}</th>`).join('')}</tr></thead>
+              <tbody>
+                ${rows.map((row, i) => `
+                  <tr${i % 2 ? ' class="bg-slate-50"' : ''}>
+                    ${row.map(cell => `<td class="py-1 px-2">${cell.replace(/"/g, "")}</td>`).join('')}
+                  </tr>
+                `).join('')}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      `;
+            return html;
+        }
+
+        Promise.all([
+            fetch(VACUNAS_CSV_URL).then(r => { if (!r.ok) throw new Error('No se pudo cargar VACUNAS'); return r.text(); }).then(txt => txt.split('\n').map(l => l.split(','))).catch(e => { console.error("Error Vacunas", e); return [] }),
+            fetch(DESPARA_CSV_URL).then(r => { if (!r.ok) throw new Error('No se pudo cargar DESPARA'); return r.text(); }).then(txt => txt.split('\n').map(l => l.split(','))).catch(e => { console.error("Error Despara", e); return [] })
+        ]).then(([vacunas, despara]) => {
+            let html = "";
+            if (vacunas.length > 1) html += renderCard('Vacunas', '🦠', 'text-yellow-600', vacunas);
+            if (despara.length > 1) html += renderCard('Desparasitación', '💊', 'text-lime-700', despara);
+            document.getElementById('tarjetasSalud').innerHTML = html;
+        });
+
+        // --- Peso / gráfica ---
+        fetch(PESO_CSV_URL)
+            .then(r => r.text())
+            .then(txt => {
+                let rows = txt.split('\n').map(line => line.split(','));
+                const labels = rows.slice(1).map(r => (r[0] || "").replace(/"/g, ""));
+                const data = rows.slice(1).map(r => parseFloat((r[1] || "0").replace(/"/g, "")));
+                const ctx = document.getElementById('weightChart').getContext('2d');
+                if (window.weightChartObj) window.weightChartObj.destroy();
+                window.weightChartObj = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Peso (kg)',
+                            data: data,
+                            fill: true,
+                            tension: 0.4,
+                            backgroundColor: 'rgba(179, 172, 158, 0.15)',
+                            borderColor: '#818181',
+                            pointBackgroundColor: '#fbbf24',
+                            pointRadius: 5,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: { legend: { display: false } },
+                        scales: { y: { beginAtZero: true, suggestedMax: 10 } }
+                    }
+                });
+            });
+
+        // --- Peso y edad dinámicos (badge perfil) ---
+        const FECHA_NACIMIENTO = "2024-12-15"; // YYYY-MM-DD
+
+        function calcularEdad(fechaNacStr) {
+            const [ano, mes, dia] = fechaNacStr.split('-').map(x => parseInt(x, 10));
+            const nac = new Date(ano, mes - 1, dia);
+            const hoy = new Date();
+            let meses = (hoy.getFullYear() - nac.getFullYear()) * 12 + (hoy.getMonth() - nac.getMonth());
+            let dias = hoy.getDate() - nac.getDate();
+            if (dias < 0) {
+                meses--;
+                // Suma días del mes anterior
+                const prevMonth = new Date(hoy.getFullYear(), hoy.getMonth(), 0);
+                dias += prevMonth.getDate();
+            }
+            return { meses, dias };
+        }
+
+        function actualizarPesoYEdad() {
+            // Peso desde el sheet
+            fetch(PESO_CSV_URL)
+                .then(r => r.text())
+                .then(txt => {
+                    let rows = txt.split('\n').map(line => line.split(','));
+                    const validRows = rows.slice(1).filter(r => r[0] && r[1]);
+                    if (validRows.length > 0) {
+                        const lastPeso = validRows[validRows.length - 1][1].replace(/"/g, '').trim();
+                        document.querySelector("#pesoActual span:last-child").textContent = `${lastPeso}kg`;
+                    }
+                });
+
+            // Edad (días y meses)
+            const edad = calcularEdad(FECHA_NACIMIENTO);
+            document.querySelector("#edadActual span:last-child").textContent =
+                edad.dias > 0 ? `${edad.meses} meses y ${edad.dias} días` : `${edad.meses} meses`;
+        }
+
+        actualizarPesoYEdad();
+
+
+        fetch(CITAS_MEDICAS_CSV_URL)
+            .then(r => r.text())
+            .then(txt => {
+                let rows = txt.split('\n').map(line => line.split(','));
+                if (rows.length <= 1) {
+                    document.getElementById("citasMedicas").innerHTML = `<div class="text-gray-400">No hay citas médicas registradas</div>`;
+                    return;
+                }
+                function parseFechaDMY(fechaStr) {
+                    if (!fechaStr) return new Date(2000, 0, 1);
+                    const parts = fechaStr.trim().split('/');
+                    if (parts.length < 3) return new Date(2000, 0, 1);
+                    const [d, m, y] = parts.map(x => parseInt(x, 10));
+                    return new Date(y, m - 1, d);
+                }
+                let [headers, ...citas] = rows;
+                citas = citas
+                    .filter(r => r[0] && r[1])
+                    .sort((a, b) => parseFechaDMY(b[0]) - parseFechaDMY(a[0]));
+
+                let html = `
+            <table class="min-w-full text-xs text-slate-700">
+                <thead>
+                    <tr>
+                        ${headers.map(h => `<th class="py-1 px-2 text-left font-semibold">${h.replace(/"/g, '')}</th>`).join('')}
+                    </tr>
+                </thead>
+                <tbody>
+                    ${citas.map((row, i) => `
+                        <tr${i % 2 ? ' class="bg-slate-50"' : ''}>
+                            ${row.map(cell => `<td class="py-1 px-2">${cell.replace(/"/g, '')}</td>`).join('')}
+                        </tr>
+                    `).join('')}
+                </tbody>
+            </table>
+        `;
+                document.getElementById("citasMedicas").innerHTML = html;
+            }).catch(() => {
+                document.getElementById("citasMedicas").innerHTML = `<div class="text-gray-400">No se pudo cargar la tabla de citas médicas</div>`;
+            });
+
+// --- Notas y curiosidades dinámicas con sub-tarjetas ---
+fetch(NOTAS_CSV_URL)
+  .then(r => r.text())
+  .then(txt => {
+      let lines = txt.trim().split(/\r?\n/);
+      let notas = lines.slice(1)
+        .map(line => line.split(',')[0]) // toma solo la columna A
+        .map(cell => cell.replace(/(^"|"$)/g, '').trim())
+        .filter(Boolean);
+
+      let html = notas.map(nota => `
+        <div class="bg-yellow-50/80 rounded-xl shadow p-3 flex gap-2 items-start hover:bg-yellow-100/80 transition-all border border-yellow-200">
+          <span class="text-2xl text-yellow-400 mt-1">🐾</span>
+          <div class="text-slate-700 text-sm font-medium">${nota}</div>
+        </div>
+      `).join('');
+      document.getElementById("notasCuriosidades").innerHTML = html || '<div class="text-gray-400">No hay notas registradas</div>';
+  })
+  .catch(() => {
+      document.getElementById("notasCuriosidades").innerHTML = `<div class="text-gray-400">No se pudo cargar las notas</div>`;
+  });
+
+
+    </script>
+</body>
+
+</html>
