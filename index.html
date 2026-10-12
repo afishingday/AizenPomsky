@@ -5,12 +5,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Perfil de Aizen 🐾</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
             background: linear-gradient(135deg, #202946 0%, #232a44 60%, #312e63 100%);
             min-height: 100vh;
+        }
+
+        #profilePicture img {
+            width: 10rem;
+            height: 10rem;
+            border-radius: 9999px;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        #timelineFotos img {
+            width: 100%;
+            height: 8rem;
+            object-fit: cover;
+            object-position: center;
         }
 
         .timeline-scroll::-webkit-scrollbar {
@@ -287,7 +304,7 @@ const NOTAS_CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/t
                         break;
                     }
                 }
-                document.getElementById('profilePicture').innerHTML = `<img src="${profileImg}" alt="Perfil Aizen" class="w-40 h-40 rounded-full object-cover object-center border-4 border-indigo-300 shadow-xl transition-all duration-700">`;
+                document.getElementById('profilePicture').innerHTML = `<img src="${profileImg}" alt="Perfil Aizen" class="w-40 h-40 rounded-full object-cover object-center border-4 border-indigo-300 shadow-xl transition-all duration-700" style="width:10rem;height:10rem;border-radius:9999px;object-fit:cover;object-position:center;">`;
 
                 // Filtrar fotos para timeline (NO carnets, NO profile)
                 let fotos = rows.slice(1)
@@ -306,7 +323,7 @@ const NOTAS_CSV_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/t
                 let html = fotos.map(foto => `
           <div class="flex-shrink-0 w-36 group transition-transform hover:-translate-y-2 pop-in" style="animation-delay: ${Math.random() * .5 + .1}s;">
             <div class="rounded-xl overflow-hidden shadow-md border bg-indigo-50 relative">
-              <img src="${foto.imagen}" alt="${foto.fecha}" class="w-full h-32 object-cover object-center"/>
+              <img src="${foto.imagen}" alt="${foto.fecha}" class="w-full h-32 object-cover object-center" style="width:100%;height:8rem;object-fit:cover;object-position:center;"/>
               <span class="text-2xl absolute -top-3 -left-3">🐾</span>
             </div>
             
